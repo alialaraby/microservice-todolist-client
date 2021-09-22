@@ -7,6 +7,11 @@ import { NotFoundComponent } from './shared/components/not-found/not-found.compo
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'main/tasks',
+    pathMatch: 'full'
+  },
+  {
+    path: '',
     component: TodolistLayoutComponent,
     children: [
       {
