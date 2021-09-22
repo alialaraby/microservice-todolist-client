@@ -1,5 +1,6 @@
 <p>users</p>
 
 <ul>
-    <ol *ngFor="let item of users">{{ item.fullName }}</ol>
+    <li *ngFor="let item of users">{{ item.fullName }}</li>
+    <li *ngIf="users.length == 0">no users available</li>
 </ul>

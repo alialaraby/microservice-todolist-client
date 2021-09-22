@@ -27,7 +27,9 @@ export class TasksComponent implements OnInit {
     .subscribe(
       (data: any) => {
         this.users = data.data as any[];
-        
+      },
+      (error) => {
+        console.log('something went wrong', error);
       }
     )
   }
