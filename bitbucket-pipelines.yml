@@ -1,0 +1,28 @@
+# This is an example Starter pipeline configuration
+# Use a skeleton to build, test and deploy using manual and parallel steps
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+image: node:10.15.3
+ 
+pipelines:
+  branches:
+    Stage:
+         - step:
+                name : Build and Deploy
+                script:
+                  - npm install
+                  - npm install -g @angular/cli
+                  - ng build --configuration production
+                artifacts: # defining the artifacts to be passed to each future step.
+                  - dist/**
+         - step:
+                script:
+                  - apt-get update
+                  - apt-get install -y git
+                  - apt-get -qq install git-ftp
+                  - ls
+                  - cd dist
+                  - git add .
+                  - git commit -m "Deployment"
+                  - git ftp push --force --syncroot dist/ --user $FTPUSERNAME --passwd $FTP_PASSWORD sftp://143.198.166.188/var/www/todolist-frontend
+                  - echo "Everthing is Okay on Master"
