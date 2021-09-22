@@ -24,7 +24,7 @@ definitions:
           variables:
             USER: $SSH_USER
             SERVER: $SERVER
-            REMOTE_PATH: '~/todolist_frontend/'
+            REMOTE_PATH: '/var/www/todolist_frontend'
             LOCAL_PATH: 'dist/*'
 
 pipelines:
