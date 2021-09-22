@@ -2,11 +2,11 @@
 # Use a skeleton to build, test and deploy using manual and parallel steps
 # -----
 # You can specify a custom docker image from Docker Hub as your build environment.
-image: node:10.15.3
+image: node:14.17.4
  
 pipelines:
   branches:
-    Master:
+    master:
          - step:
                 name : Build and Deploy
                 script:
