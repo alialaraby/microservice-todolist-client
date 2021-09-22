@@ -22,6 +22,9 @@ pipelines:
                   - apt-get -qq install git-ftp
                   - ls
                   - cd dist
+                  - git config git-ftp.url "ftp://143.198.166.188/var/www/todolist-frontend"
+                  - git config git-ftp.user $FTPUSERNAME
+                  - git config git-ftp.password $FTP_PASSWORD
                   - git ftp init
-                  - git ftp push --force --syncroot dist/ --user $FTPUSERNAME --passwd $FTP_PASSWORD sftp://143.198.166.188/var/www/todolist-frontend
+                  - git ftp push
                   - echo "Everthing is Okay on Master"
