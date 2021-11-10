@@ -24,6 +24,7 @@ export class TasksComponent implements OnInit {
     { title: "third todo", content: "todo content 2 to do!!" },
   ];
   users: any[] = [];
+  todos: any[] = [];
   obsUsers: Observable<any> = new Observable<any>();
   prmsUsers: Promise<any> = new Promise(function (resolve: any, reject: any) {});
   value="";
@@ -31,10 +32,10 @@ export class TasksComponent implements OnInit {
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
-    let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTRkZmQwZmM4YzAxN2Q0NDlmOGYyNDciLCJpYXQiOjE2MzI1MDEyNjF9.3ubhGkQm3apmgrJ0tjv5dLLzx2zyEZLappdZorawVSQ';
-    const configs = { headers: new HttpHeaders().set('Authorization', 'B ' + '') }
+    let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MThiYmY2M2M4NzQwOWZlMWE3NmRkNTYiLCJpYXQiOjE2MzY1NzE3MDl9.xPhgLmw24v3IsrOgg9k9B8o9ZCU7IgTVfsT4pYFW3Rk';
+    const configs = { headers: new HttpHeaders().set('Authorization', 'B ' + token) }
     let data = {
-      userId: '614dfd0fc8c017d449f8f247'
+      userId: '618bbf63c87409fe1a76dd56'
     }
     
     // this.obsUsers = this.dataService.getAll('http://localhost:3000/users/getAllUsers', configs, data).pipe(
@@ -45,10 +46,37 @@ export class TasksComponent implements OnInit {
     //   })  
     // )
 
-    this.dataService.getAll('http://localhost:3000/users/getAllUsers', configs, data)
+    // this.dataService.getAll('http://localhost:3000/users/getAllUsers', configs, data)
+    // .subscribe(
+    //   (data: any) => {
+    //     this.users = data.data as any[];
+    //   },
+    //   (error: HttpErrorResponse) => {
+    //     console.log(error);
+    //     if(error.status === 401)
+    //       console.log('un authorized');
+    //     else
+    //       console.log('resource unavailable');
+    //   }, () => { console.log('done'); }
+    // );
+    this.dataService.getAllUsers('http://localhost:4000/getAllUsers')
     .subscribe(
       (data: any) => {
         this.users = data.data as any[];
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+        if(error.status === 401)
+          console.log('un authorized');
+        else
+          console.log('resource unavailable');
+      }, () => { console.log('done'); }
+    );
+
+    this.dataService.getAll('http://localhost:3000/todos/getAllTodos', configs, data)
+    .subscribe(
+      (data: any) => {
+        this.todos = data.data as any[];
       },
       (error: HttpErrorResponse) => {
         console.log(error);

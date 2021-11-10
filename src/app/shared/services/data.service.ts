@@ -16,6 +16,9 @@ export class DataService {
   getAll(url: string, headers: any, data: any){
     return this.http.post(url, data, headers);
   }
+  getAllUsers(url: string){
+    return this.http.get(url);
+  }
 
 
   private handleError(error: HttpErrorResponse){

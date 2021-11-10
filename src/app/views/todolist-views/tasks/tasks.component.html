@@ -1,4 +1,4 @@
-<p>users with async</p>
+<!-- <p>users with async</p>
 <ng-container *ngIf="(obsUsers | async) as datas; else usersErrorTemplate">
     <ol>
         <li *ngFor="let item of (obsUsers | async)?.data">{{item.fullName}}</li>
@@ -10,14 +10,20 @@
 <p>users with async 2</p>
 <ol>
     <li *ngFor="let item of (obsUsers | async)?.data">{{item.fullName}}</li>
-</ol>
+</ol> -->
 
-<p>users with subscribe</p>
+<p>Users with subscribe</p>
 <ul>
     <li *ngFor="let item of users">{{ item.fullName }}</li>
     <li *ngIf="users.length == 0">no users available</li>
 </ul>
 
+<p>Todos with subscribe</p>
+<ul>
+    <li *ngFor="let item of todos">{{ item.title }}: {{ item.content }}</li>
+    <li *ngIf="todos.length == 0">no users available</li>
+</ul>
+<!-- 
 <h2>Example 2</h2>
 <input type="text" name="value" [(ngModel)]="value">
 <p> You entered {{value}}</p>
@@ -28,4 +34,4 @@
     <li *ngFor="let item of person | keyvalue: originalOrderKeyValPipe">
         <b>{{ item.key }}: {{ item.value }}</b>
     </li>
-</ul>
+</ul> -->
