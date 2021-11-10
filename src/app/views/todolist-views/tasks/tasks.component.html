@@ -1,6 +1,31 @@
-<p>users</p>
+<p>users with async</p>
+<ng-container *ngIf="(obsUsers | async) as datas; else usersErrorTemplate">
+    <ol>
+        <li *ngFor="let item of (obsUsers | async)?.data">{{item.fullName}}</li>
+    </ol>    
+</ng-container>
+<ng-template #usersErrorTemplate>
+    <p>users list empty or error</p>
+</ng-template>
+<p>users with async 2</p>
+<ol>
+    <li *ngFor="let item of (obsUsers | async)?.data">{{item.fullName}}</li>
+</ol>
 
+<p>users with subscribe</p>
 <ul>
     <li *ngFor="let item of users">{{ item.fullName }}</li>
     <li *ngIf="users.length == 0">no users available</li>
+</ul>
+
+<h2>Example 2</h2>
+<input type="text" name="value" [(ngModel)]="value">
+<p> You entered {{value}}</p>
+<button (click)="clearValue()">Clear</button>
+
+<h2>keyValue pipe</h2>
+<ul>
+    <li *ngFor="let item of person | keyvalue: originalOrderKeyValPipe">
+        <b>{{ item.key }}: {{ item.value }}</b>
+    </li>
 </ul>
